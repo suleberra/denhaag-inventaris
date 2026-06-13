@@ -1,0 +1,13 @@
+# QGIS
+*.qgz~
+*.qgs~
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary exports
+temp/

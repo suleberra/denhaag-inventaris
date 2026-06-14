@@ -1,0 +1,23 @@
+{
+"type": "FeatureCollection",
+"name": "fietsenstallingen_processed",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "straat": "PRINSEGRACHT 274" }, "geometry": { "type": "Point", "coordinates": [ 4.300468269105395, 52.072147297621513 ] } },
+{ "type": "Feature", "properties": { "fid": 2, "straat": "TORENSTRAAT 126" }, "geometry": { "type": "Point", "coordinates": [ 4.30527178956653, 52.077770684774272 ] } },
+{ "type": "Feature", "properties": { "fid": 3, "straat": "grote halstraat 9" }, "geometry": { "type": "Point", "coordinates": [ 4.308027293806714, 52.07801251171518 ] } },
+{ "type": "Feature", "properties": { "fid": 4, "straat": "laan 9" }, "geometry": { "type": "Point", "coordinates": [ 4.307580767508647, 52.076023366794942 ] } },
+{ "type": "Feature", "properties": { "fid": 5, "straat": "Voldersgracht 42" }, "geometry": { "type": "Point", "coordinates": [ 4.31424534296288, 52.076573494639035 ] } },
+{ "type": "Feature", "properties": { "fid": 6, "straat": "Amsterdamse Veerkade 30" }, "geometry": { "type": "Point", "coordinates": [ 4.315962484884096, 52.075265484542825 ] } },
+{ "type": "Feature", "properties": { "fid": 7, "straat": "Buitenhof 4" }, "geometry": { "type": "Point", "coordinates": [ 4.310448171957453, 52.078410415869946 ] } },
+{ "type": "Feature", "properties": { "fid": 8, "straat": "KRANESTRAAT 14" }, "geometry": { "type": "Point", "coordinates": [ 4.316055442696157, 52.076094407099013 ] } },
+{ "type": "Feature", "properties": { "fid": 9, "straat": "Nobelstraat 2D" }, "geometry": { "type": "Point", "coordinates": [ 4.307064236248057, 52.078632907357537 ] } },
+{ "type": "Feature", "properties": { "fid": 10, "straat": "Denneweg 128" }, "geometry": { "type": "Point", "coordinates": [ 4.311753308929808, 52.085856215932765 ] } },
+{ "type": "Feature", "properties": { "fid": 11, "straat": "BUITENHOF 5" }, "geometry": { "type": "Point", "coordinates": [ 4.310363593742543, 52.078414991212888 ] } },
+{ "type": "Feature", "properties": { "fid": 12, "straat": "GEDEMPTE GRACHT 26" }, "geometry": { "type": "Point", "coordinates": [ 4.313338629204667, 52.076787848948726 ] } },
+{ "type": "Feature", "properties": { "fid": 13, "straat": "WAGENSTRAAT 186" }, "geometry": { "type": "Point", "coordinates": [ 4.316653943739132, 52.074258748868623 ] } },
+{ "type": "Feature", "properties": { "fid": 14, "straat": "Plein" }, "geometry": { "type": "Point", "coordinates": [ 4.315555139920436, 52.080240571406797 ] } },
+{ "type": "Feature", "properties": { "fid": 15, "straat": "Raamstraat 2" }, "geometry": { "type": "Point", "coordinates": [ 4.309771353461934, 52.076272164532739 ] } },
+{ "type": "Feature", "properties": { "fid": 16, "straat": "Spui 68" }, "geometry": { "type": "Point", "coordinates": [ 4.316076363892295, 52.077432811645096 ] } }
+]
+}

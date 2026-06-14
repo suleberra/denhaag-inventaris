@@ -1,6 +1,8 @@
 # QGIS
 *.qgz~
 *.qgs~
+*.qmd
+*.gpkg
 
 # VS Code
 .vscode/
@@ -11,3 +13,4 @@ Thumbs.db
 
 # Temporary exports
 temp/
+data/raw/

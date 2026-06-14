@@ -10,3 +10,29 @@ fetch('data/processed/bomen_processed.geojson')
     .then(data => {
         L.geoJSON(data).addTo(map);
     });
+
+fetch('data/processed/banken_processed.geojson')
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data).addTo(map);
+    });
+
+fetch('data/processed/fietsenrekken_processed.geojson')
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data).addTo(map);
+    });
+
+
+fetch('data/processed/fietsenstallingen_processed.geojson')
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data).addTo(map);
+    });
+
+    
+fetch('data/processed/wijkgrens_processed.geojson')
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data).addTo(map);
+    });

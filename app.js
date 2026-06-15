@@ -5,6 +5,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+const districtLayer = L.layerGroup().addTo(map);
 const treesLayer = L.layerGroup().addTo(map);
 const benchesLayer = L.layerGroup().addTo(map);
 const bikeParkingLayer = L.layerGroup().addTo(map);
@@ -12,25 +13,26 @@ const bikeParkingLayer = L.layerGroup().addTo(map);
 fetch('data/processed/wijkgrens_processed.geojson')
     .then(response => response.json())
     .then(data => {
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, {
-                    radius: 6,
-                    fillColor: "orange",
-                    color: "brown",
-                    weight: 1,
-                    fillOpacity: 0.8
-                });
+        const districtGeoJSON = L.geoJSON(data, {
+
+            style: {
+                color: 'black',
+                weight: 2,
+                fillOpacity: 0
             },
+
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(`
-                    <strong>District border</strong> ${feature.properties.name}<br>
-                    `);
+                    <strong>District border</strong><br>
+                    ${feature.properties.name}
+                `);
             }
-        }).addTo(map);
+
+        }).addTo(districtLayer);
+
+        map.fitBounds(districtGeoJSON.getBounds());
     });
-
-
+    
 fetch('data/processed/bomen_processed.geojson')
     .then(response => response.json())
     .then(data => {
@@ -119,7 +121,8 @@ fetch('data/processed/fietsenstallingen_processed.geojson')
 const overlays = {
     "Trees": treesLayer,
     "Benches": benchesLayer,
-    "Bike parking": bikeParkingLayer
+    "Bike parking": bikeParkingLayer,
+    "District Boundary": districtLayer
 };
 
 L.control.layers(null, overlays).addTo(map);

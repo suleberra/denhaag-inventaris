@@ -5,6 +5,32 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+const treesLayer = L.layerGroup().addTo(map);
+const benchesLayer = L.layerGroup().addTo(map);
+const bikeParkingLayer = L.layerGroup().addTo(map);
+
+fetch('data/processed/wijkgrens_processed.geojson')
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 6,
+                    fillColor: "orange",
+                    color: "brown",
+                    weight: 1,
+                    fillOpacity: 0.8
+                });
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(`
+                    <strong>District border</strong> ${feature.properties.name}<br>
+                    `);
+            }
+        }).addTo(map);
+    });
+
+
 fetch('data/processed/bomen_processed.geojson')
     .then(response => response.json())
     .then(data => {
@@ -23,7 +49,7 @@ fetch('data/processed/bomen_processed.geojson')
                     <strong>Tree</strong> ${feature.properties.id}<br>
                     `);
             }
-        }).addTo(map);
+        }).addTo(treesLayer);
     });
 
 fetch('data/processed/banken_processed.geojson')
@@ -44,7 +70,7 @@ fetch('data/processed/banken_processed.geojson')
                     <strong>Bench</strong> ${feature.properties.imgeo_lokaalid}<br>
                     `);
             }
-        }).addTo(map);
+        }).addTo(benchesLayer);
     });
 
 fetch('data/processed/fietsenrekken_processed.geojson')
@@ -54,8 +80,8 @@ fetch('data/processed/fietsenrekken_processed.geojson')
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: 6,
-                    fillColor: "blue",
-                    color: "darkblue",
+                    fillColor: "navyblue",
+                    color: "navy",
                     weight: 1,
                     fillOpacity: 0.8
                 });
@@ -65,7 +91,7 @@ fetch('data/processed/fietsenrekken_processed.geojson')
                     <strong>Bike rack</strong> ${feature.properties.imgeo_lokaalid}<br>
                     `);
             }
-        }).addTo(map);
+        }).addTo(bikeParkingLayer);
     });
 
 
@@ -84,30 +110,16 @@ fetch('data/processed/fietsenstallingen_processed.geojson')
             },
             onEachFeature: function (feature, layer) {
                 layer.bindPopup(`
-                    <strong>Bike shed</strong> ${feature.properties.imgeo_lokaalid}<br>
+                    <strong>Bike parking facility</strong> ${feature.properties.imgeo_lokaalid}<br>
                     `);
             }
-        }).addTo(map);
+        }).addTo(bikeParkingLayer);
     });
 
-    
-// fetch('data/processed/wijkgrens_processed.geojson')
-//     .then(response => response.json())
-//     .then(data => {
-//         L.geoJSON(data, {
-//             pointToLayer: function(feature, latlng) {
-//                 return L.circleMarker(latlng, {
-//                     radius: 6,
-//                     fillColor: "orange",
-//                     color: "brown",
-//                     weight: 1,
-//                     fillOpacity: 0.8
-//                 });
-//             },
-//             onEachFeature: function (feature, layer) {
-//                 layer.bindPopup(`
-//                     <strong>District border</strong> ${feature.properties.name}<br>
-//                     `);
-//             }
-//         }).addTo(map);
-//     });
+const overlays = {
+    "Trees": treesLayer,
+    "Benches": benchesLayer,
+    "Bike parking": bikeParkingLayer
+};
+
+L.control.layers(null, overlays).addTo(map);

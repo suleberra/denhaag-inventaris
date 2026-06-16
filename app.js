@@ -10,6 +10,36 @@ const treesLayer = L.layerGroup().addTo(map);
 const benchesLayer = L.layerGroup().addTo(map);
 const bikeParkingLayer = L.layerGroup().addTo(map);
 
+const drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+const drawControl = new L.Control.Draw({
+    edit: {
+        featureGroup: drawnItems
+    }
+});
+
+map.addControl(drawControl);
+
+map.on(L.Draw.Event.CREATED, function (event) {
+    // test
+    console.log("Feature created!");
+    const layer = event.layer;
+
+    if (event.layerType === "marker") {
+        layer.bindPopup("New inventory object");
+    } else {
+        layer.setStyle({
+            color: "red",
+            weight: 3,
+            fillOpacity: 0.3
+        });
+    }
+
+    drawnItems.addLayer(layer);
+});
+
+
 let bikeTotal = 0;
 
 fetch('data/processed/wijkgrens_processed.geojson')

@@ -1,9 +1,67 @@
 html, body {
     margin: 0;
+    padding: 0;
     height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 280px;
+    min-width: 280px;
+    height: 100vh;
+    padding: 15px;
+    background: white;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#sidebar h2 {
+    margin-top: 0;
+}
+
+#stats p,
+#legend p {
+    margin: 8px 0;
 }
 
 #map {
-    width: 100%;
+    flex: 1;
     height: 100vh;
+}
+
+.legend-circle {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.legend-circle.trees {
+    background-color: green;
+}
+
+.legend-circle.benches {
+    background-color: orange;
+}
+
+.legend-circle.bikes {
+    background-color: navy;
+}
+
+.legend-line {
+    display: inline-block;
+    width: 18px;
+    border-top: 3px solid black;
+    margin-right: 8px;
+    vertical-align: middle;
 }

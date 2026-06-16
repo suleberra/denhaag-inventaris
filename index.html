@@ -9,7 +9,29 @@
 </head>
 
 <body>
-    <div id="map"></div>
+<div id="sidebar">
+    <h2>Den Haag Centrum</h2>
+    <h3>Public Space Inventory Viewer</h3>
+
+    <div id="stats">
+        <p>Trees: <span id="tree-count">0</span></p>
+        <p>Benches: <span id="bench-count">0</span></p>
+        <p>Bike Parking: <span id="bike-count">0</span></p>
+    </div>
+
+    <hr>
+
+    <div id="legend">
+        <h3>Legend</h3>
+
+        <p><span class="legend-circle trees"></span> Trees</p>
+        <p><span class="legend-circle benches"></span> Benches</p>
+        <p><span class="legend-circle bikes"></span> Bike Parking</p>
+        <p><span class="legend-line"></span> District Boundary</p>
+    </div>
+</div>
+
+<div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="app.js"></script>

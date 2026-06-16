@@ -10,6 +10,8 @@ const treesLayer = L.layerGroup().addTo(map);
 const benchesLayer = L.layerGroup().addTo(map);
 const bikeParkingLayer = L.layerGroup().addTo(map);
 
+let bikeTotal = 0;
+
 fetch('data/processed/wijkgrens_processed.geojson')
     .then(response => response.json())
     .then(data => {
@@ -36,6 +38,10 @@ fetch('data/processed/wijkgrens_processed.geojson')
 fetch('data/processed/bomen_processed.geojson')
     .then(response => response.json())
     .then(data => {
+
+        document.getElementById("tree-count").textContent =
+            data.features.length;
+
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
@@ -57,6 +63,10 @@ fetch('data/processed/bomen_processed.geojson')
 fetch('data/processed/banken_processed.geojson')
     .then(response => response.json())
     .then(data => {
+
+        document.getElementById("bench-count").textContent =
+            data.features.length;
+
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
@@ -78,6 +88,10 @@ fetch('data/processed/banken_processed.geojson')
 fetch('data/processed/fietsenrekken_processed.geojson')
     .then(response => response.json())
     .then(data => {
+
+        bikeTotal += data.features.length;
+        document.getElementById("bike-count").textContent = bikeTotal;
+
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
@@ -100,12 +114,16 @@ fetch('data/processed/fietsenrekken_processed.geojson')
 fetch('data/processed/fietsenstallingen_processed.geojson')
     .then(response => response.json())
     .then(data => {
+
+        bikeTotal += data.features.length;
+        document.getElementById("bike-count").textContent = bikeTotal;
+
         L.geoJSON(data, {
             pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: 6,
-                    fillColor: "lightblue",
-                    color: "darkblue",
+                    fillColor: "navyblue",
+                    color: "navy",
                     weight: 1,
                     fillOpacity: 0.8
                 });

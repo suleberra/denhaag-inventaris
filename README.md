@@ -3,7 +3,7 @@
 ## Screenshots
 
 ### Main Viewer
-![Main Viewer](screenshots/main-page.png)
+![Main Viewer](screenshots/main_page.png)
 
 ### Inventory Workflow
 ![Inventory Workflow](screenshots/drawing_an_object.png)

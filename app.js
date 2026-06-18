@@ -26,18 +26,43 @@ map.on(L.Draw.Event.CREATED, function (event) {
     console.log("Feature created!");
     const layer = event.layer;
 
+    const objectType = prompt(
+        "Object type? (Tree, Bench, Bike Rack)"
+    );
+    const condition = prompt(
+        "Condition of the object? (Good, Fix, Replace)"
+    );
+    const notes = prompt(
+        "Aditional notes:"
+    );
+
+    layer.feature = {
+    type: "Feature",
+    properties: {
+        objectType: objectType,
+        condition: condition,
+        notes: notes
+    }
+    };
+
     if (event.layerType === "marker") {
-        layer.bindPopup("New inventory object");
+            layer.bindPopup(`
+        <strong>${objectType}</strong>
+        `);
     } else {
         layer.setStyle({
             color: "red",
             weight: 3,
             fillOpacity: 0.3
         });
+    
+        layer.bindPopup(`
+    <strong>${objectType}</strong>
+    `);
     }
 
     drawnItems.addLayer(layer);
-});
+}); 
 
 
 let bikeTotal = 0;
@@ -165,6 +190,31 @@ fetch('data/processed/fietsenstallingen_processed.geojson')
             }
         }).addTo(bikeParkingLayer);
     });
+
+const exportButton = 
+    document.getElementById("export-button")
+
+exportButton.addEventListener(
+    "click",
+    function () {
+
+        const geojson = drawnItems.toGeoJSON();
+        const geojsonText = JSON.stringify(geojson);
+
+        const blob = new Blob([geojsonText], {
+            type: "application/geo+json"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url; 
+        link.download = "inventory.geojson";
+        link.click();
+        URL.revokeObjectURL(url);
+    }
+);
 
 const overlays = {
     "Trees": treesLayer,
